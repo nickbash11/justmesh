@@ -1,0 +1,37 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+STOP=99
+
+CONTROL="/justmesh"
+JUSTMESHSETUP="/etc/justmesh/justmeshsetup.sh"
+
+configure() {
+	cp /etc/config/system /etc/config/system.bak
+	uci set system.@system[0].hostname="$(${JUSTMESHSETUP} hostname)"
+	uci commit
+	cp /etc/config/network /etc/config/network.bak
+	${JUSTMESHSETUP} network > /etc/config/network
+	cp /etc/config/wireless /etc/config/wireless.bak
+	${JUSTMESHSETUP} wireless > /etc/config/wireless
+	cp /etc/config/alfred /etc/config/alfred.bak
+	${JUSTMESHSETUP} alfred > /etc/config/alfred
+	touch $CONTROL
+	reboot
+}
+
+start() {
+	if [ ! -e "$CONTROL" ]; then
+		configure
+	fi
+}
+ 
+stop() {
+	nothing to do
+}
+
+restart()
+{
+	stop
+	start
+}
