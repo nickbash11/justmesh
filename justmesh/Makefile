@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/justmesh
   SECTION:=justmesh
-  CATEGORY:=justmesh
+  CATEGORY:=JustMesh
   DEPENDS:=+raat
   TITLE:=Scripts for quick deploy the mesh network
 endef
