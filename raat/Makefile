@@ -20,7 +20,7 @@ define Package/raat
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
   TITLE:=The daemon for announce static routes through ALFRED
-  DEPENDS:=+alfred +batctl-default +batctl +kmod-batman-adv
+  DEPENDS:=+alfred @CONFIG_PACKAGE_batctl||@CONFIG_PACKAGE_batctl-default +kmod-batman-adv
 endef
 
 define Package/raat/description
