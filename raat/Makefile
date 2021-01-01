@@ -17,7 +17,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/raat
   SECTION:=justmesh
-  CATEGORY:=Justmesh
+  CATEGORY:=JustMesh
   TITLE:=The daemon for announce static routes through ALFRED
   DEPENDS:=+alfred @CONFIG_PACKAGE_batctl||@CONFIG_PACKAGE_batctl-default +kmod-batman-adv
 endef
