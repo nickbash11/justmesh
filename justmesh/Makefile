@@ -9,7 +9,6 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/justmesh
 include $(INCLUDE_DIR)/package.mk
 
 define Package/justmesh
-  SECTION:=justmesh
   CATEGORY:=JustMesh
   DEPENDS:=+raat
   TITLE:=Scripts for quick deploy the mesh network

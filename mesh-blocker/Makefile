@@ -9,7 +9,6 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/mesh-blocker
 include $(INCLUDE_DIR)/package.mk
 
 define Package/mesh-blocker
-  SECTION:=justmesh
   CATEGORY:=JustMesh
   TITLE:=Scripts for blocking unknown mesh nodes
 endef
