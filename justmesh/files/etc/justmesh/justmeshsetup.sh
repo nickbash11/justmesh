@@ -7,7 +7,7 @@ then
 fi
 
 MESHID=justMesh
-APNAME=meshAP
+APNAME=justAP
 
 if [ ! -d /sys/class/net/eth0 ]
 then
@@ -71,7 +71,7 @@ then
 
 	while [ true ]
 	do
-		octet2=$(PoorMansRandomGenerator 3)
+		octet2=$(PoorMansRandomGenerator 3 | sed 's/^0*//')
 		if [ $octet2 -le 255 ]
 		then
 			break;
@@ -80,7 +80,7 @@ then
 
 	while [ true ]
 	do
-		octet3=$(PoorMansRandomGenerator 3)
+		octet3=$(PoorMansRandomGenerator 3 | sed 's/^0*//')
 		if [ $octet3 -le 255 ]
 		then
 			break;
@@ -140,8 +140,20 @@ then
 	i=0
 	for wlanif in $WLAN_LIST
 	do
+
+		while [ true ]
+		do
+			octet=$(PoorMansRandomGenerator 3 | sed 's/^0*//')
+			if [ $octet -le 255 ]
+			then
+				break;
+			fi
+		done
+
 		echo "config interface 'mesh_w${i}'"
-		echo "	option proto 'none'"
+		echo "	option proto 'static'"
+		echo "	option ipaddr '169.254.${octet}.1'"
+		echo "	option netmask '255.255.255.248'"
 		echo "	option mtu '1536'"
 		echo ""
 		echo "config device 'wlan${i}_20'"
@@ -160,9 +172,9 @@ then
 			echo ""
 		else
 			echo "config interface 'bat0_hardif_wlan${i}_20'"
-			echo "  option ifname 'wlan${i}_20'"
-			echo "  option proto 'batadv'"
-			echo "  option mesh 'bat0'"
+			echo "	option ifname 'wlan${i}_20'"
+			echo "	option proto 'batadv'"
+			echo "	option mesh 'bat0'"
 			echo ""
 		fi
 
