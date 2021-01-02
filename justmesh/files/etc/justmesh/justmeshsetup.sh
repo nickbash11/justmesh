@@ -105,6 +105,7 @@ then
 	echo "	option proto 'static'"
 	echo "	option ipaddr '10.${octet2}.${octet3}.1'"
 	echo "	option netmask '255.255.255.224'"
+	echo "	option dns '208.67.222.222 208.67.220.220'"
 	echo "	option ip6assign '60'"
 	echo ""
 
