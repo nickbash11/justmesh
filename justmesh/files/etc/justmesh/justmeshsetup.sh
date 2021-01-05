@@ -111,10 +111,6 @@ then
 
 	for ethif in $ETH_LIST
 	do
-		echo "config device '${ethif}_mtu1536'"
-		echo "	option name '${ethif}'"
-		echo "	option mtu '1536'"
-		echo ""
 		echo "config device '${ethif}_20'"
 		echo "	option type '8021ad'"
 		echo "	option name '${ethif}_20'"
